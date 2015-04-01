@@ -16,7 +16,7 @@ AutoForm.addInputType("noUiSlider", {
 Template.afNoUiSlider.helpers({
   atts: function () {
     var template = Template.instance();
-    return _.omit(template.atts, 'noUiSliderOptions');
+    return _.omit(_.omit(template.atts, 'noUiSliderOptions'),'noUiSlider_pipsOptions'); 
   }
 });
 
@@ -63,8 +63,12 @@ Template.afNoUiSlider.rendered = function () {
       $(template.$('.form-control')).change();
     }
   });
-  template.$('.form-control').Link('upper').to(template.$('.sliderValueUpper'), 'html');
-  template.$('.form-control').Link('lower').to(template.$('.sliderValueLower'), 'html');
+  
+  if( template.data.atts.noUiSlider_pipsOptions ){
+    template.$('.form-control').noUiSlider_pips(
+      template.data.atts.noUiSlider_pipsOptions
+    );
+  }
 };
 
 /*
@@ -72,13 +76,3 @@ Template.afNoUiSlider.rendered = function () {
  */
 
 Template.afNoUiSlider.copyAs('afNoUiSlider_bootstrap3');
-
-// The only difference is that we need to add "form-control" class
-Template.afNoUiSlider_bootstrap3.helpers({
-  atts: function addFormControlAtts() {
-    var atts = _.omit(this.atts, 'noUiSliderOptions');
-    // Add bootstrap class
-    atts = AutoForm.Utility.addClass(atts, "form-control");
-    return atts;
-  }
-});
