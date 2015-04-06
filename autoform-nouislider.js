@@ -24,6 +24,11 @@ Template.afNoUiSlider.helpers({
     var data = Template.instance().data;
     var atts = data.atts;
     atts["data-type"] = data.schemaType.name;
+    if( atts["class"] ){
+      atts["class"] = atts["class"] + " at-nouislider";
+    }else{
+      atts["class"] = "at-nouislider";
+    }
     return _.omit(_.omit(atts, 'noUiSliderOptions'),'noUiSlider_pipsOptions'); 
   }
 });
