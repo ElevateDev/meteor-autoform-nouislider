@@ -3,6 +3,7 @@
 AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
+    console.log( "Value out" );
     var elem = $(this[0]);
     var slider = $(elem.find('.nouislider')[0]);
     if( this.attr("data-type") === "Object" ){
@@ -33,9 +34,9 @@ Template.afNoUiSlider.helpers({
   }
 });
 
-Template.afNoUiSlider.rendered = function () {
-  var template = this;
-  var $s = template.$('.nouislider');
+
+var calculateOptions = function(template){
+  console.log( "value", template.data.value );
   var options = {};
   if( template.data.atts.noUiSliderOptions ){
     options = template.data.atts.noUiSliderOptions;
@@ -43,22 +44,22 @@ Template.afNoUiSlider.rendered = function () {
 
   // Adjust data initalization based on schema type
   var start;
-  if( this.data.schemaType.name === "Object" ){
-    if( this.data.value && this.data.value.lower ){
+  if( template.data.schemaType.name === "Object" ){
+    if( template.data.value && template.data.value.lower ){
       start = [
-        this.data.value.lower,
-        this.data.value.upper
+        template.data.value.lower,
+        template.data.value.upper
       ];
     }else{
       start = [
-        this.data.min ? this.data.min : 0, 
-        this.data.max ? this.data.max : 100
+        template.data.min ? template.data.min : 0, 
+        template.data.max ? template.data.max : 100
       ];
     }
     options.connect = true;
   }else{
-    if( this.data.value ){
-      start = this.data.value;
+    if( template.data.value ){
+      start = template.data.value;
     }else{
       start = 0;
     }
@@ -66,8 +67,8 @@ Template.afNoUiSlider.rendered = function () {
   options.start = start;
 
   var range = {
-    min: this.data.min ? this.data.min : 0, 
-    max: this.data.max ? this.data.max : 100
+    min: template.data.min ? template.data.min : 0, 
+    max: template.data.max ? template.data.max : 100
   };
 
   options.range = range;
@@ -76,19 +77,32 @@ Template.afNoUiSlider.rendered = function () {
   if( !options.step ){
     options.step = 1;
   }
+  return options;
+};
 
-  $s.noUiSlider(options || {});
-  /*template.$('.form-control').on({
-    slide: function(){
-      template.$('.form-control').change();
-    }
-  });*/
+
+Template.afNoUiSlider.rendered = function () {
+  var template = this;
+  var $s = template.$('.nouislider');
+  template.autorun(function(){
+    console.log( "Autorun" );
+    
+    var options = calculateOptions( template );
   
-  if( template.data.atts.noUiSlider_pipsOptions ){
-    $s.noUiSlider_pips(
-      template.data.atts.noUiSlider_pipsOptions
-    );
-  }
+    $s.noUiSlider(options);
+    /*template.$('.form-control').on({
+      slide: function(){
+        console.log( $s.parent() );
+        $s.parent().change();
+      }
+    });*/
+    
+    if( template.data.atts.noUiSlider_pipsOptions ){
+      $s.noUiSlider_pips(
+        template.data.atts.noUiSlider_pipsOptions
+      );
+    }
+  });
 };
 
 /*
