@@ -43,28 +43,30 @@ var calculateOptions = function(template){
   }
 
   // Adjust data initalization based on schema type
-  var start;
-  if( template.data.schemaType.name === "Object" ){
-    if( template.data.value && template.data.value.lower ){
-      start = [
-        template.data.value.lower,
-        template.data.value.upper
-      ];
-    }else{
-      start = [
-        template.data.min ? template.data.min : 0, 
-        template.data.max ? template.data.max : 100
-      ];
+  if (options.start != typeof(undefined)) {
+    var start;
+    if (template.data.schemaType.name === "Object") {
+      if (template.data.value && template.data.value.lower) {
+        start = [
+          template.data.value.lower,
+          template.data.value.upper
+        ];
+      } else {
+        start = [
+          template.data.min ? template.data.min : 0,
+          template.data.max ? template.data.max : 100
+        ];
+      }
+      options.connect = true;
+    } else {
+      if (template.data.value) {
+        start = template.data.value;
+      } else {
+        start = 0;
+      }
     }
-    options.connect = true;
-  }else{
-    if( template.data.value ){
-      start = template.data.value;
-    }else{
-      start = 0;
-    }
+    options.start = start;
   }
-  options.start = start;
 
   var range = {
     min: template.data.min ? template.data.min : 0, 
