@@ -54,3 +54,12 @@ Adds the `noUiSlider` type to autoform.  Specifying options passed as `noUiSlide
       }
     });
 
+
+### Overridding start and range
+You can override start and range by passing the options in.  
+
+Be sure that the values passed in match the format below.
+
+    {{> afQuickField name='slider' start="[50,60]"}}
+    {{> afQuickField name='singleSlider' range='{"min": 2,"max":50}'}}
+

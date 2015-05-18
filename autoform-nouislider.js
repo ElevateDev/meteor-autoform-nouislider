@@ -3,7 +3,6 @@
 AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
-    console.log( "Value out" );
     var elem = $(this[0]);
     var slider = $(elem.find('.nouislider')[0]);
     if( this.attr("data-type") === "Object" ){
@@ -36,42 +35,58 @@ Template.afNoUiSlider.helpers({
 
 
 var calculateOptions = function(template){
-  console.log( "value", template.data.value );
+  var autoformOptions;
+  if( template.data && template.data.atts){
+    autoformOptions = template.data.atts;
+  }
+  
   var options = {};
   if( template.data.atts.noUiSliderOptions ){
     options = template.data.atts.noUiSliderOptions;
   }
 
   // Adjust data initalization based on schema type
-  var start;
-  if( template.data.schemaType.name === "Object" ){
-    if( template.data.value && template.data.value.lower ){
-      start = [
-        template.data.value.lower,
-        template.data.value.upper
-      ];
+  if( options.start === undefined ){
+    if( autoformOptions && autoformOptions.start ){
+      options.start = JSON.parse(autoformOptions.start);
     }else{
-      start = [
-        template.data.min ? template.data.min : 0, 
-        template.data.max ? template.data.max : 100
-      ];
-    }
-    options.connect = true;
-  }else{
-    if( template.data.value ){
-      start = template.data.value;
-    }else{
-      start = 0;
+      var start;
+      if( template.data.schemaType.name === "Object" ){
+        if( template.data.value && template.data.value.lower ){
+          start = [
+            template.data.value.lower,
+            template.data.value.upper
+          ];
+        }else{
+          start = [
+            template.data.min ? template.data.min : 0, 
+            template.data.max ? template.data.max : 100
+          ];
+        }
+        options.connect = true;
+      }else{
+        if( template.data.value ){
+          start = template.data.value;
+        }else{
+          start = 0;
+        }
+      }
+      options.start = start;
     }
   }
-  options.start = start;
 
-  var range = {
-    min: template.data.min ? template.data.min : 0, 
-    max: template.data.max ? template.data.max : 100
-  };
+  if( options.range === undefined ){
+    if( autoformOptions && autoformOptions.range ){
+      options.range = JSON.parse(autoformOptions.range);
+    }else{
+      var range = {
+        min: template.data.min ? template.data.min : 0, 
+        max: template.data.max ? template.data.max : 100
+      };
 
-  options.range = range;
+      options.range = range;
+    }
+  }
 
   // default step to 1 if not otherwise defined
   if( !options.step ){
@@ -85,17 +100,14 @@ Template.afNoUiSlider.rendered = function () {
   var template = this;
   var $s = template.$('.nouislider');
   template.autorun(function(){
-    console.log( "Autorun" );
-    
     var options = calculateOptions( template );
-  
+    console.log( options ); 
     $s.noUiSlider(options);
-    /*template.$('.form-control').on({
+    $s.on({
       slide: function(){
-        console.log( $s.parent() );
         $s.parent().change();
       }
-    });*/
+    });
     
     if( template.data.atts.noUiSlider_pipsOptions ){
       $s.noUiSlider_pips(
