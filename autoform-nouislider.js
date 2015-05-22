@@ -101,7 +101,6 @@ Template.afNoUiSlider.rendered = function () {
   var $s = template.$('.nouislider');
   template.autorun(function(){
     var options = calculateOptions( template );
-    console.log( options ); 
     $s.noUiSlider(options);
     $s.on({
       slide: function(){
