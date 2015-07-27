@@ -16,7 +16,6 @@ Template.rangeSlider.helpers({
   },
   rangeValue: function(fieldName) {
     fieldName = "singleSlider";
-    console.log( "FieldValue", AutoForm.getFieldValue(fieldName, "collectionId") );
     var value = AutoForm.getFieldValue(fieldName);
     return value;
   }

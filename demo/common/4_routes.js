@@ -5,9 +5,11 @@ Router.configure({
 });
 
 Router.route('/', {
-  name: 'home', 
+  name: 'root', 
   template: 'rangeSlider',
   waitOn: function(){
     return Meteor.subscribe("Collection");
   }
 });
+
+Router.route('home');

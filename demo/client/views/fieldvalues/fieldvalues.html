@@ -2,7 +2,7 @@
   {{#if Template.subscriptionsReady}}
     {{#autoForm collection="Collection" type=action doc=editDoc id="collectionId" autosave=true}}
       <fieldset>
-        {{> afQuickField name='slider' start="[50,60]"}}
+        {{> afQuickField name='slider'}}
         {{> afQuickField name='singleSlider' range='{"min": 2,"max":50}'}}
       </fieldset>
       <button type="submit" class="btn btn-primary">{{action}}</button>

@@ -42,7 +42,7 @@ var calculateOptions = function(template){
   
   var options = {};
   if( template.data.atts.noUiSliderOptions ){
-    options = template.data.atts.noUiSliderOptions;
+    options = _.extend({},template.data.atts.noUiSliderOptions);
   }
 
   // Adjust data initalization based on schema type
@@ -99,7 +99,7 @@ var calculateOptions = function(template){
 Template.afNoUiSlider.rendered = function () {
   var template = this;
   var $s = template.$('.nouislider');
-  template.autorun(function(){
+  var setup = function(){
     var options = calculateOptions( template );
     $s.noUiSlider(options);
     $s.on({
@@ -113,7 +113,9 @@ Template.afNoUiSlider.rendered = function () {
         template.data.atts.noUiSlider_pipsOptions
       );
     }
-  });
+  };
+  
+  template.autorun( setup );
 };
 
 /*
