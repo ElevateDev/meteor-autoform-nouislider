@@ -4,7 +4,13 @@ elevatedevdesign:autoform-nouislider
 `meteor add elevatedevdesign:autoform-nouislider`
 
 ## Configuration
-Adds the `noUiSlider` type to autoform.  Specifying options passed as `noUiSliderOptions` will be passed directly to [nouislider](http://refreshless.com/nouislider/).  Currently only support's a range, though I'll accept a pull request to allow single values.
+Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autoform). It uses `min`, `max`, and `step` attributes like a normal slider, so it can be a drop in replacement, but options passed as `noUiSliderOptions` are passed directly to [nouislider](http://refreshless.com/nouislider/) for advanced control.
+
+### Simple Usage
+
+```
+{{> afFieldInput type="noUiSlider" name="foo" min=5 max=10 step=1}}
+```
 
 ### Single values
     CollectionSchema = new SimpleSchema({
@@ -14,9 +20,7 @@ Adds the `noUiSlider` type to autoform.  Specifying options passed as `noUiSlide
         min: 30,
         autoform: {
           type: "noUiSlider",
-          noUiSliderOptions: {
-            step: 10
-          },      
+          step: 10,    
           noUiSlider_pipsOptions: {
             mode: 'steps',
             density: 5
@@ -54,6 +58,9 @@ Adds the `noUiSlider` type to autoform.  Specifying options passed as `noUiSlide
       }
     });
 
+### Vertical Slider
+
+To get a vertical slider, do `noUiSliderOptions: {orientation: 'vertical'}` and specify an exact `height` in the CSS for the `nouislider` class.
 
 ### Overridding start and range
 You can override start and range by passing the options in.  
