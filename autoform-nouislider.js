@@ -28,6 +28,9 @@ Template.afNoUiSlider.helpers({
     }else{
       atts["class"] = "at-nouislider";
     }
+    if( atts["labelLeft"] || atts["labelRight"] ){
+      atts["doLabels"] = true;
+    }
     return _.omit(atts, 'noUiSliderOptions', 'noUiSlider_pipsOptions');
   }
 });
