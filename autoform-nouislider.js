@@ -4,6 +4,8 @@ AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
     var slider = this.find('.nouislider');
+    if( !slider.data('changed') ){ return; }
+
     if( this.attr("data-type") === "Object" ){
       var first = parseInt(slider.val()[0]);
       var second = parseInt(slider.val()[1]);
@@ -28,9 +30,9 @@ Template.afNoUiSlider.helpers({
     }else{
       atts["class"] = "at-nouislider";
     }
-    if( atts["labelLeft"] || atts["labelRight"] ){
-      atts["doLabels"] = true;
-    }
+
+    atts.doLabels = ( atts.labelLeft || atts.labelRight );
+
     return _.omit(atts, 'noUiSliderOptions', 'noUiSlider_pipsOptions');
   }
 });
@@ -101,6 +103,7 @@ Template.afNoUiSlider.rendered = function () {
         // their value changes rather than relying on the change event
         $s.parent()[0].value = JSON.stringify($s.val());
         $s.parent().change();
+        $s.data('changed','true');
       });
     }
     
