@@ -1,5 +1,13 @@
 <template name="afNoUiSlider">
   <div {{atts}}>
-    <div class="nouislider"></div>
+    {{#if atts.doLabels}}
+      <div class="nouislider-container">
+        <span class="nouislider-label">{{atts.labelLeft}}</span>
+        <div class="nouislider"></div>
+        <span class="nouislider-label">{{atts.labelRight}}</span>
+      </div>
+    {{else}}
+      <div class="nouislider"></div>
+    {{/if}}
   </div>
 </template>

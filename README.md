@@ -70,3 +70,8 @@ Be sure that the values passed in match the format below.
     {{> afQuickField name='slider' start="[50,60]"}}
     {{> afQuickField name='singleSlider' range='{"min": 2,"max":50}'}}
 
+### Labels
+Show a label left and/or right of the slider
+```
+{{> afFieldInput type="noUiSlider" name="foo" labelLeft="ugly" labelRight="delicious" min=0 max=1 step=0.1}}
+```

@@ -13,6 +13,7 @@ Package.onUse(function(api) {
   api.use('aldeed:autoform@4.0.0 || 5.0.0');
   api.addFiles([
     'autoform-nouislider.html',
-    'autoform-nouislider.js'
+    'autoform-nouislider.js',
+    'autoform-nouislider.css'
   ], 'client');
 });
