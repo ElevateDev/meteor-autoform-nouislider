@@ -116,9 +116,3 @@ Template.afNoUiSlider.rendered = function () {
   
   template.autorun( setup );
 };
-
-/*
- *  BOOTSTRAP THEME
- */
-
-Template.afNoUiSlider.copyAs('afNoUiSlider_bootstrap3');
