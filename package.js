@@ -1,7 +1,7 @@
 Package.describe({
   name: 'elevatedevdesign:autoform-nouislider',
   summary: 'Dual value slider for autoform.',
-  version: '0.1.1',
+  version: '0.2.0',
   git: 'https://github.com/ElevateDevelopmentAndDesign/meteor-autoform-nouislider'
 });
 
