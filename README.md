@@ -1,4 +1,4 @@
-elevatedevdesign:autoform-nouislider
+muqube:autoform-nouislider
 =========================
 
 `meteor add elevatedevdesign:autoform-nouislider`
@@ -75,3 +75,6 @@ Show a label left and/or right of the slider
 ```
 {{> afFieldInput type="noUiSlider" name="foo" labelLeft="ugly" labelRight="delicious" min=0 max=1 step=0.1}}
 ```
+
+## History
+This meteor package is a fork of elevatedevdesign:autoform-nouislider. I forked it to make it compatible with meteor 1.3 and fix some bugs.
