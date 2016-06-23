@@ -1,6 +1,10 @@
 elevatedevdesign:autoform-nouislider
 =========================
 
+I no longer plan to maintain this, you should switch to https://github.com/muqube/meteor-autoform-nouislider.
+
+## Install
+
 `meteor add elevatedevdesign:autoform-nouislider`
 
 ## Configuration
