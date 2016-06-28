@@ -77,4 +77,4 @@ Show a label left and/or right of the slider
 ```
 
 ## History
-This meteor package is a fork of elevatedevdesign:autoform-nouislider. I forked it to make it compatible with meteor 1.3 and fix some bugs.
+This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://github.com/ElevateDev/meteor-autoform-nouislider). I forked it to make it compatible with meteor 1.3 and fix some bugs.
