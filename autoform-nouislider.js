@@ -4,7 +4,6 @@ AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
     var slider = this.find('.nouislider');
-    if( !slider.data('changed') ){ return; }
 
     if( this.attr("data-type") === "Object" ){
       var first = parseInt(slider.val()[0]);
