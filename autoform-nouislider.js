@@ -4,10 +4,12 @@ AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
     var slider = this.find('.nouislider');
+    var isDecimal = this.closest(".at-nouislider").data("decimal");
 
     if( this.attr("data-type") === "Object" ){
-      var first = parseInt(slider.val()[0]);
-      var second = parseInt(slider.val()[1]);
+      var parser = (isDecimal)? parseFloat : parseInt;
+      var first = parser.call(null, slider.val()[0]);
+      var second = parser.call(null, slider.val()[1]);
       var value = {
         lower: first > second ? second : first,
         upper: first > second ? first : second
@@ -31,6 +33,8 @@ Template.afNoUiSlider.helpers({
     }
 
     atts.doLabels = ( atts.labelLeft || atts.labelRight );
+
+    atts["data-decimal"] = data.decimal;
 
     return _.omit(atts, 'noUiSliderOptions', 'noUiSlider_pipsOptions');
   }
