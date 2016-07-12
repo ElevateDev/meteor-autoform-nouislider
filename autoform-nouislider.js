@@ -47,7 +47,7 @@ var calculateOptions = function(data){
 
   var options = _.extend({}, schemaMinMax, autoformOptions, noUiSliderOptions);
 
-  // Adjust data initalization based on schema type
+  // Adjust data initialization based on schema type
   if( options.start === undefined ){
     if( data.schemaType.name === "Object" ){
       if( data.value && data.value.lower ){
