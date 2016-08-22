@@ -113,7 +113,7 @@ Template.afNoUiSlider.rendered = function () {
     }
     
     if( data.atts.noUiSlider_pipsOptions ){
-      $s.noUiSlider_pips(
+      $s[0].noUiSlider.pips(
         data.atts.noUiSlider_pipsOptions
       );
     }
