@@ -65,8 +65,6 @@ var calculateOptions = function(data){
     }else{
       options.start = data.value || 0;
     }
-  } else {
-    options.start = JSON.parse(options.start);
   }
 
   if( options.range === undefined ){
@@ -74,9 +72,8 @@ var calculateOptions = function(data){
       min: typeof options.min === "number" ? options.min : 0,
       max: typeof options.max === "number" ? options.max : 100
     };
-  } else {
-    options.range = JSON.parse(options.range);
   }
+  
   delete options.min;
   delete options.max;
 
