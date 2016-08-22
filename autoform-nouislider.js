@@ -1,5 +1,10 @@
 /* global AutoForm, _, Template */
 
+import noUiSlider from 'nouislider';
+import 'nouislider/src/nouislider.css';
+import 'nouislider/src/nouislider.pips.css';
+import 'nouislider/src/nouislider.tooltips.css';
+
 AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
@@ -92,7 +97,7 @@ Template.afNoUiSlider.rendered = function () {
   var setup = function(c){
     var data = Template.currentData(); // get data reactively
     var options = calculateOptions( data );
-    $s.noUiSlider(options, true);
+    noUiSlider.create($s[0], options);
 
     if (c.firstRun) {
       $s.on('slide', function(){
