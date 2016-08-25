@@ -100,7 +100,7 @@ Template.afNoUiSlider.rendered = function () {
     noUiSlider.create($s[0], options);
 
     if (c.firstRun) {
-      $s.on('slide', function(){
+      $s[0].noUiSlider.on('slide', function(){
         // This is a trick to fool some logic in AutoForm that makes
         // sure values have actually changed on whichever element
         // emits a change event. Eventually AutoForm will give
