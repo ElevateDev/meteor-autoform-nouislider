@@ -78,3 +78,10 @@ Show a label left and/or right of the slider
 
 ## History
 This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://github.com/ElevateDev/meteor-autoform-nouislider). I forked it to make it compatible with meteor 1.3 and fix some bugs.
+
+
+## Release Notes
+
+# 0.3
+- Bug fixed: start and range options set in schema definition was overwritten
+- Removed dependency on wrapper package `rcy:nouislider`
