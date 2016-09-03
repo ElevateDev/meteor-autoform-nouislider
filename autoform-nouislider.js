@@ -1,22 +1,27 @@
 /* global AutoForm, _, Template */
 
+import noUiSlider from 'nouislider';
+import 'nouislider/src/nouislider.css';
+import 'nouislider/src/nouislider.pips.css';
+import 'nouislider/src/nouislider.tooltips.css';
+
 AutoForm.addInputType("noUiSlider", {
   template: "afNoUiSlider",
   valueOut: function(){
-    var slider = this.find('.nouislider');
+    var slider = this.find('.nouislider')[0];
     var isDecimal = this.closest(".at-nouislider").data("decimal");
 
     if( this.attr("data-type") === "Object" ){
       var parser = (isDecimal)? parseFloat : parseInt;
-      var first = parser.call(null, slider.val()[0]);
-      var second = parser.call(null, slider.val()[1]);
+      var first = parser.call(null, slider.noUiSlider.get()[0]);
+      var second = parser.call(null, slider.noUiSlider.get()[1]);
       var value = {
         lower: first > second ? second : first,
         upper: first > second ? first : second
       };
       return value;
     }else{
-      return slider.val();
+      return slider.noUiSlider.get();
     }
   }
 });
@@ -73,7 +78,7 @@ var calculateOptions = function(data){
       max: typeof options.max === "number" ? options.max : 100
     };
   }
-  
+
   delete options.min;
   delete options.max;
 
@@ -92,27 +97,27 @@ Template.afNoUiSlider.rendered = function () {
   var setup = function(c){
     var data = Template.currentData(); // get data reactively
     var options = calculateOptions( data );
-    $s.noUiSlider(options, true);
+    noUiSlider.create($s[0], options);
 
     if (c.firstRun) {
-      $s.on('slide', function(){
+      $s[0].noUiSlider.on('slide', function(){
         // This is a trick to fool some logic in AutoForm that makes
         // sure values have actually changed on whichever element
         // emits a change event. Eventually AutoForm will give
         // input types the control of indicating exactly when
         // their value changes rather than relying on the change event
-        $s.parent()[0].value = JSON.stringify($s.val());
+        $s.parent()[0].value = JSON.stringify($s[0].noUiSlider.get());
         $s.parent().change();
         $s.data('changed','true');
       });
     }
-    
+
     if( data.atts.noUiSlider_pipsOptions ){
-      $s.noUiSlider_pips(
-        data.atts.noUiSlider_pipsOptions
+      $s[0].noUiSlider.pips(
+          data.atts.noUiSlider_pipsOptions
       );
     }
   };
-  
+
   template.autorun( setup );
 };
