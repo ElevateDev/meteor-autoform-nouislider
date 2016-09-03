@@ -82,6 +82,6 @@ This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://
 
 ## Release Notes
 
-# 0.3
+### 0.3
 - Bug fixed: start and range options set in schema definition was overwritten
 - Removed dependency on wrapper package `rcy:nouislider`
