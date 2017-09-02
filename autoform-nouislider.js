@@ -97,23 +97,30 @@ Template.afNoUiSlider.rendered = function () {
   var setup = function(c){
     var data = Template.currentData(); // get data reactively
     var options = calculateOptions( data );
-    noUiSlider.create($s[0], options);
+    var sliderElem = $s[0];
+
+    if(sliderElem.noUiSlider) {
+      sliderElem.noUiSlider.updateOptions(options, true);
+    }
+    else {
+      noUiSlider.create(sliderElem, options);
+    }
 
     if (c.firstRun) {
-      $s[0].noUiSlider.on('slide', function(){
+      sliderElem.noUiSlider.on('slide', function(){
         // This is a trick to fool some logic in AutoForm that makes
         // sure values have actually changed on whichever element
         // emits a change event. Eventually AutoForm will give
         // input types the control of indicating exactly when
         // their value changes rather than relying on the change event
-        $s.parent()[0].value = JSON.stringify($s[0].noUiSlider.get());
+        $s.parent()[0].value = JSON.stringify(sliderElem.noUiSlider.get());
         $s.parent().change();
         $s.data('changed','true');
       });
     }
 
     if( data.atts.noUiSlider_pipsOptions ){
-      $s[0].noUiSlider.pips(
+      sliderElem.noUiSlider.pips(
           data.atts.noUiSlider_pipsOptions
       );
     }
