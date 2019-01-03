@@ -1,6 +1,10 @@
 muqube:autoform-nouislider
 =========================
 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+## Installation
+
 `meteor add muqube:autoform-nouislider`
 
 ## Configuration
@@ -12,7 +16,7 @@ Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autofo
 {{> afFieldInput type="noUiSlider" name="foo" min=5 max=10 step=1}}
 ```
 
-### Single values
+### Single values Schema
     CollectionSchema = new SimpleSchema({
       slider: {
         type: Number,
@@ -30,7 +34,7 @@ Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autofo
     });
 
 
-### Range Silder
+### Range Silder Schema
     RangeSchema = new SimpleSchema({
       lower: {
         type: Number
