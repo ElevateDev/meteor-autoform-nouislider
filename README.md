@@ -92,3 +92,9 @@ This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://
 
 ### 0.4
 - Bug fixed: "Slider was already initialized" error fixed
+
+### 0.4.1
+- Update AutoForm to 6.0.0, other dependencies also updated to recent version
+- Code is now [Javascript standard style](https://standardjs.com/)
+- Some ES5 syntax updated to ES6
+
