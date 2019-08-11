@@ -7,7 +7,7 @@ Package.describe({
 })
 
 Npm.depends({
-  'nouislider': '8.5.1',
+  'nouislider': '14.0.2',
 })
 
 Package.onUse(function (api) {
